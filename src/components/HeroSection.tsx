@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Download, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import XeroHeroTitle from "./XeroHeroTitle";
 
 const HeroSection = () => {
   const handleInstall = () => {
@@ -72,6 +73,9 @@ const HeroSection = () => {
 
         {/* Hero Content */}
         <div className="max-w-4xl mx-auto text-center">
+          {/* Giant XERO Title with Effects */}
+          <XeroHeroTitle />
+
           {/* Badge */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8"
