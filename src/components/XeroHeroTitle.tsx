@@ -117,17 +117,15 @@ const XeroHeroTitle = () => {
           X
         </motion.span>
         <motion.span
-          className="inline-block bg-clip-text text-transparent"
+          className="inline-block text-white"
           style={{
-            backgroundImage: "linear-gradient(135deg, #001F3F 0%, #003366 50%, #001F3F 100%)",
-            backgroundSize: "200% auto",
-            filter: "drop-shadow(0 0 20px rgba(0, 31, 63, 0.3))",
+            filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.2))",
           }}
           animate={{
-            backgroundPosition: ["0% center", "200% center"],
+            opacity: [0.9, 1, 0.9],
           }}
           transition={{
-            duration: 4,
+            duration: 3,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -161,10 +159,7 @@ const XeroHeroTitle = () => {
             X
           </span>
           <span
-            className="inline-block bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(135deg, #001F3F 0%, #003366 100%)",
-            }}
+            className="inline-block text-white/50"
           >
             ero
           </span>
