@@ -1,185 +1,186 @@
 import { motion } from "framer-motion";
 
 const XeroHeroTitle = () => {
-  // Lightning bolt positions
-  const lightningBolts = [
-    { x: -120, y: -20, rotation: -15, delay: 0 },
-    { x: 120, y: -30, rotation: 15, delay: 0.3 },
-    { x: -80, y: 40, rotation: -25, delay: 0.6 },
-    { x: 100, y: 50, rotation: 20, delay: 0.9 },
-  ];
-
-  // Falling money items
-  const moneyItems = Array.from({ length: 12 }, (_, i) => ({
+  // Subtle floating particles
+  const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
-    x: Math.random() * 100 - 50,
-    delay: Math.random() * 3,
-    duration: 4 + Math.random() * 3,
-    symbol: i % 3 === 0 ? "💵" : i % 3 === 1 ? "💰" : "🪙",
-    size: 16 + Math.random() * 12,
+    x: (Math.random() - 0.5) * 400,
+    y: (Math.random() - 0.5) * 200,
+    size: 4 + Math.random() * 8,
+    duration: 4 + Math.random() * 4,
+    delay: Math.random() * 2,
+  }));
+
+  // Energy lines
+  const energyLines = Array.from({ length: 5 }, (_, i) => ({
+    id: i,
+    width: 100 + Math.random() * 200,
+    y: -40 + i * 20,
+    delay: i * 0.3,
+    duration: 3 + Math.random() * 2,
   }));
 
   return (
-    <div className="relative flex flex-col items-center justify-center mb-8">
-      {/* Lightning bolts */}
-      {lightningBolts.map((bolt, index) => (
-        <motion.div
-          key={index}
-          className="absolute pointer-events-none"
-          style={{
-            left: `calc(50% + ${bolt.x}px)`,
-            top: `calc(50% + ${bolt.y}px)`,
-          }}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{
-            opacity: [0, 1, 1, 0],
-            scale: [0.5, 1.2, 1, 0.8],
-          }}
-          transition={{
-            duration: 0.8,
-            delay: bolt.delay,
-            repeat: Infinity,
-            repeatDelay: 2,
-          }}
-        >
-          <svg
-            width="40"
-            height="60"
-            viewBox="0 0 40 60"
-            fill="none"
-            style={{ transform: `rotate(${bolt.rotation}deg)` }}
-          >
-            <motion.path
-              d="M20 0L25 22H40L22 35L28 60L10 40L0 45L15 25L5 22L20 0Z"
-              fill="url(#lightning-gradient)"
-              animate={{
-                filter: [
-                  "drop-shadow(0 0 5px #40E0D0)",
-                  "drop-shadow(0 0 15px #40E0D0)",
-                  "drop-shadow(0 0 5px #40E0D0)",
-                ],
-              }}
-              transition={{ duration: 0.3, repeat: Infinity }}
-            />
-            <defs>
-              <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#40E0D0" />
-                <stop offset="50%" stopColor="#00CED1" />
-                <stop offset="100%" stopColor="#ffffff" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </motion.div>
-      ))}
-
-      {/* Electric glow behind text */}
-      <motion.div
-        className="absolute w-80 h-32 rounded-full blur-3xl"
-        style={{
-          background: "radial-gradient(ellipse, rgba(64, 224, 208, 0.4) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.4, 0.7, 0.4],
-        }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Main XERO text */}
-      <motion.h1
-        className="text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-transparent bg-clip-text relative z-10"
-        style={{
-          backgroundImage: "linear-gradient(135deg, #40E0D0 0%, #00CED1 30%, #20B2AA 60%, #40E0D0 100%)",
-          backgroundSize: "200% auto",
-          textShadow: "0 0 40px rgba(64, 224, 208, 0.5)",
-        }}
-        initial={{ opacity: 0, y: -50, scale: 0.8 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          backgroundPosition: ["0% center", "200% center"],
-        }}
-        transition={{
-          opacity: { duration: 0.8 },
-          y: { duration: 0.8 },
-          scale: { duration: 0.8 },
-          backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" },
-        }}
-      >
-        XERO
-      </motion.h1>
-
-      {/* Mirror reflection */}
-      <motion.div
-        className="relative h-16 md:h-20 lg:h-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
-        <h1
-          className="text-7xl md:text-8xl lg:text-9xl font-display font-extrabold text-transparent bg-clip-text"
-          style={{
-            backgroundImage: "linear-gradient(135deg, #40E0D0 0%, #00CED1 30%, #20B2AA 60%, #40E0D0 100%)",
-            transform: "scaleY(-1)",
-            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 80%)",
-            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 80%)",
-            filter: "blur(2px)",
-          }}
-        >
-          XERO
-        </h1>
-      </motion.div>
-
-      {/* Falling money animation */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {moneyItems.map((item) => (
+    <div className="relative flex flex-col items-center justify-center mb-12">
+      {/* Energy lines behind text */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        {energyLines.map((line) => (
           <motion.div
-            key={item.id}
-            className="absolute"
+            key={line.id}
+            className="absolute h-[1px] rounded-full"
             style={{
-              left: `calc(50% + ${item.x}%)`,
-              fontSize: item.size,
-              opacity: 0.6,
+              width: line.width,
+              top: `calc(50% + ${line.y}px)`,
+              background: "linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.4), transparent)",
             }}
-            initial={{ y: -60, opacity: 0, rotate: 0 }}
+            initial={{ scaleX: 0, opacity: 0 }}
             animate={{
-              y: ["-60px", "300px"],
+              scaleX: [0, 1, 1, 0],
               opacity: [0, 0.6, 0.6, 0],
-              rotate: [0, 360],
+              x: [-100, 0, 0, 100],
             }}
             transition={{
-              duration: item.duration,
-              delay: item.delay,
+              duration: line.duration,
+              delay: line.delay,
               repeat: Infinity,
-              ease: "linear",
+              repeatDelay: 1,
+              ease: "easeInOut",
             }}
-          >
-            {item.symbol}
-          </motion.div>
+          />
         ))}
       </div>
 
-      {/* Sparkle effects */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={`sparkle-${i}`}
-          className="absolute w-2 h-2 rounded-full bg-xero-turquoise"
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full"
+            style={{
+              left: `calc(50% + ${particle.x}px)`,
+              top: `calc(50% + ${particle.y}px)`,
+              width: particle.size,
+              height: particle.size,
+              background: "radial-gradient(circle, rgba(64, 224, 208, 0.3) 0%, transparent 70%)",
+            }}
+            animate={{
+              y: [0, -20, 0],
+              x: [0, 10, 0],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: particle.duration,
+              delay: particle.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Ambient glow */}
+      <motion.div
+        className="absolute w-96 h-40 rounded-full blur-3xl"
+        style={{
+          background: "radial-gradient(ellipse, rgba(64, 224, 208, 0.15) 0%, transparent 70%)",
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Main "Xero" text */}
+      <motion.h1
+        className="text-6xl md:text-7xl lg:text-8xl font-display font-extrabold relative z-10 tracking-tight"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.span
+          className="inline-block bg-clip-text text-transparent"
           style={{
-            left: `calc(50% + ${(Math.random() - 0.5) * 200}px)`,
-            top: `calc(50% + ${(Math.random() - 0.5) * 100}px)`,
+            backgroundImage: "linear-gradient(135deg, #40E0D0 0%, #00CED1 50%, #40E0D0 100%)",
+            backgroundSize: "200% auto",
           }}
           animate={{
-            scale: [0, 1, 0],
-            opacity: [0, 1, 0],
+            backgroundPosition: ["0% center", "200% center"],
           }}
           transition={{
-            duration: 1.5,
-            delay: i * 0.4,
+            duration: 4,
             repeat: Infinity,
+            ease: "linear",
           }}
-        />
-      ))}
+        >
+          X
+        </motion.span>
+        <motion.span
+          className="inline-block bg-clip-text text-transparent"
+          style={{
+            backgroundImage: "linear-gradient(135deg, #001F3F 0%, #003366 50%, #001F3F 100%)",
+            backgroundSize: "200% auto",
+            filter: "drop-shadow(0 0 20px rgba(0, 31, 63, 0.3))",
+          }}
+          animate={{
+            backgroundPosition: ["0% center", "200% center"],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          ero
+        </motion.span>
+      </motion.h1>
+
+      {/* Elegant mirror reflection */}
+      <motion.div
+        className="relative h-12 md:h-16 lg:h-20 overflow-hidden mt-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        <div
+          className="text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight"
+          style={{
+            transform: "scaleY(-1)",
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 60%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 60%)",
+            filter: "blur(1px)",
+          }}
+        >
+          <span
+            className="inline-block bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #40E0D0 0%, #00CED1 100%)",
+            }}
+          >
+            X
+          </span>
+          <span
+            className="inline-block bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #001F3F 0%, #003366 100%)",
+            }}
+          >
+            ero
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Subtle horizontal line accent */}
+      <motion.div
+        className="w-24 h-[2px] mt-6 rounded-full"
+        style={{
+          background: "linear-gradient(90deg, transparent, #40E0D0, transparent)",
+        }}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+      />
     </div>
   );
 };
