@@ -99,35 +99,52 @@ const XeroHeroTitle = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
+        {/* Professional X with glow and pulse */}
         <motion.span
-          className="inline-block bg-clip-text text-transparent"
+          className="inline-block relative"
           style={{
-            backgroundImage: "linear-gradient(135deg, #40E0D0 0%, #00CED1 50%, #40E0D0 100%)",
-            backgroundSize: "200% auto",
+            color: "#40E0D0",
+            textShadow: `
+              0 0 20px rgba(64, 224, 208, 0.8),
+              0 0 40px rgba(64, 224, 208, 0.6),
+              0 0 60px rgba(64, 224, 208, 0.4),
+              0 0 80px rgba(64, 224, 208, 0.2)
+            `,
           }}
           animate={{
-            backgroundPosition: ["0% center", "200% center"],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          X
-        </motion.span>
-        <motion.span
-          className="inline-block text-white"
-          style={{
-            filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.2))",
-          }}
-          animate={{
-            opacity: [0.9, 1, 0.9],
+            textShadow: [
+              `0 0 20px rgba(64, 224, 208, 0.8), 0 0 40px rgba(64, 224, 208, 0.6), 0 0 60px rgba(64, 224, 208, 0.4), 0 0 80px rgba(64, 224, 208, 0.2)`,
+              `0 0 30px rgba(64, 224, 208, 1), 0 0 60px rgba(64, 224, 208, 0.8), 0 0 90px rgba(64, 224, 208, 0.5), 0 0 120px rgba(64, 224, 208, 0.3)`,
+              `0 0 20px rgba(64, 224, 208, 0.8), 0 0 40px rgba(64, 224, 208, 0.6), 0 0 60px rgba(64, 224, 208, 0.4), 0 0 80px rgba(64, 224, 208, 0.2)`,
+            ],
+            scale: [1, 1.02, 1],
           }}
           transition={{
             duration: 3,
             repeat: Infinity,
-            ease: "linear",
+            ease: "easeInOut",
+          }}
+        >
+          X
+        </motion.span>
+        {/* "ero" with strong contrast */}
+        <motion.span
+          className="inline-block"
+          style={{
+            color: "#FFFFFF",
+            textShadow: `
+              0 0 10px rgba(255, 255, 255, 0.5),
+              0 0 20px rgba(64, 224, 208, 0.3),
+              2px 2px 4px rgba(0, 0, 0, 0.5)
+            `,
+          }}
+          animate={{
+            opacity: [0.95, 1, 0.95],
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
         >
           ero
