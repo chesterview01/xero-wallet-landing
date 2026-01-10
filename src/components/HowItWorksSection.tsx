@@ -1,31 +1,51 @@
-import { Download, CreditCard, ArrowRightLeft, Settings } from 'lucide-react';
+import { UserPlus, DollarSign, ArrowRightLeft, Wallet } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const steps = [
   {
     number: '01',
-    icon: Download,
-    title: 'Instala la aplicación',
-    description: 'Descarga Xero Wallet en tu dispositivo. Disponible para todos los navegadores modernos como una app instalable.',
+    icon: UserPlus,
+    title: 'Regístrate en Xero Wallet',
+    description: 'Crea tu cuenta en minutos. Solo necesitas tu correo electrónico y un número de teléfono.',
   },
   {
     number: '02',
-    icon: CreditCard,
-    title: 'Recarga tu wallet',
-    description: 'Añade fondos a tu wallet convirtiéndolos a USDX. Múltiples métodos de pago disponibles.',
+    icon: DollarSign,
+    title: 'Compra USDX con bolívares',
+    description: 'Transfiere bolívares y recibe USDX al instante con la tasa oficial del BCV.',
   },
   {
     number: '03',
     icon: ArrowRightLeft,
-    title: 'Usa tu saldo',
-    description: 'Paga, ahorra o retira a bolívares cuando lo necesites. Transacciones instantáneas y seguras.',
+    title: 'Usa USDX o véndelo en P2P',
+    description: 'Envía pagos, ahorra en dólares digitales o intercambia en el mercado P2P.',
   },
   {
     number: '04',
-    icon: Settings,
-    title: 'Administra tus fondos',
-    description: 'Control total sobre tu dinero. Historial de transacciones, estadísticas y más.',
+    icon: Wallet,
+    title: 'Retira tus fondos',
+    description: 'Cuando lo necesites, convierte tu USDX a bolívares y recíbelos en tu cuenta bancaria.',
   },
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
 const HowItWorksSection = () => {
   return (
@@ -38,7 +58,13 @@ const HowItWorksSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-xero-turquoise text-sm font-medium mb-4 backdrop-blur-sm border border-white/20">
             Cómo funciona
           </span>
@@ -47,15 +73,22 @@ const HowItWorksSection = () => {
             <span className="text-xero-turquoise">4 simples pasos</span>
           </h2>
           <p className="text-white/70 text-lg">
-            Proteger tu dinero nunca fue tan fácil. Sigue estos pasos y comienza a ahorrar sin preocupaciones.
+            Proteger tu dinero nunca fue tan fácil. Sigue estos pasos y comienza a operar con USDX.
           </p>
-        </div>
+        </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {steps.map((step, index) => (
-            <div
+            <motion.div
               key={step.number}
+              variants={itemVariants}
               className="relative group"
             >
               {/* Connector line for larger screens */}
@@ -82,9 +115,9 @@ const HowItWorksSection = () => {
                   {step.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

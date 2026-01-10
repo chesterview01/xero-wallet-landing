@@ -96,7 +96,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Tu dinero protegido{" "}
+            Tu acceso directo a{" "}
             <motion.span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -112,7 +112,7 @@ const HeroSection = () => {
                 ease: "linear",
               }}
             >
-              contra la inflación
+              USDX
             </motion.span>
           </motion.h1>
 
@@ -123,8 +123,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Xero Wallet: la forma más segura de conservar valor en Venezuela. Convierte bolívares
-            a USDX y protege tu dinero.
+            Compra y vende USDX con bolívares (BCV) de forma rápida, segura y transparente.
+            Protege tu dinero de la inflación con Xero Wallet.
           </motion.p>
 
           {/* CTA Buttons */}
