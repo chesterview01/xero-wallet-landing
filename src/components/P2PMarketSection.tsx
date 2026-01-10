@@ -95,9 +95,10 @@ const P2PMarketSection = () => {
             Intercambia directamente{" "}
             <span className="text-xero-turquoise">entre usuarios</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Xero Wallet incluye un mercado P2P donde puedes comprar y vender USDX de forma segura 
-            con otros usuarios en Venezuela.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Además de la plataforma principal, Xero Wallet incluye un mercado P2P donde los usuarios 
+            compran y venden USDX directamente con bolívares. <strong className="text-foreground">Tú decides el precio, 
+            nosotros garantizamos la seguridad.</strong>
           </p>
         </motion.div>
 

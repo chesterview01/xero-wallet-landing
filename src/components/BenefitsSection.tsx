@@ -1,37 +1,42 @@
-import { Shield, Zap, Wallet, PiggyBank, Smartphone, HeadphonesIcon } from 'lucide-react';
+import { DollarSign, Shield, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const benefits = [
   {
+    icon: DollarSign,
+    title: 'Compra y venta directa contra BCV',
+    description: 'Opera con la tasa oficial del Banco Central de Venezuela. Transparencia total en cada transacción.',
+  },
+  {
     icon: Shield,
-    title: 'Aislamiento de la inflación',
-    description: 'Guarda tu dinero en USDX y evita la pérdida de valor del bolívar. Mantén tu poder adquisitivo intacto.',
+    title: 'Seguridad y transparencia',
+    description: 'Tu dinero está protegido con los más altos estándares de seguridad. Sin sorpresas ni costos ocultos.',
   },
   {
     icon: Zap,
-    title: 'Método de pago moderno',
-    description: 'Envía y recibe pagos instantáneos entre usuarios. Sin esperas, sin complicaciones.',
-  },
-  {
-    icon: Wallet,
-    title: 'Retiros rápidos',
-    description: 'Convierte tus USDX en bolívares y recíbelos en minutos directamente en tu cuenta bancaria.',
-  },
-  {
-    icon: PiggyBank,
-    title: 'Resguardo seguro',
-    description: 'Ahorra sin que tu dinero se devalúe. Tu futuro financiero está protegido con nosotros.',
-  },
-  {
-    icon: Smartphone,
-    title: 'Accesibilidad total',
-    description: 'Disponible desde cualquier dispositivo, sin necesidad de bancos tradicionales ni trámites complicados.',
-  },
-  {
-    icon: HeadphonesIcon,
-    title: 'Confianza garantizada',
-    description: 'Sistema de disputas y soporte dedicado para transacciones seguras. Estamos contigo siempre.',
+    title: 'Operaciones rápidas y comisiones bajas',
+    description: 'Transacciones instantáneas con las comisiones más competitivas del mercado.',
   },
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
 const BenefitsSection = () => {
   return (
@@ -43,30 +48,42 @@ const BenefitsSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="inline-block px-4 py-1.5 rounded-full bg-xero-turquoise/10 text-xero-turquoise text-sm font-medium mb-4">
-            Beneficios
+            Ventaja Xero
           </span>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6">
             ¿Por qué elegir{' '}
             <span className="text-xero-turquoise">Xero Wallet</span>?
           </h2>
           <p className="text-muted-foreground text-lg">
-            Diseñado específicamente para las necesidades financieras de los venezolanos. 
-            Protección, rapidez y confianza en una sola aplicación.
+            La forma más fácil y segura de operar con USDX en Venezuela.
+            Compra, vende y protege tu dinero con la tasa BCV.
           </p>
-        </div>
+        </motion.div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {benefits.map((benefit, index) => (
-            <div
+        <motion.div 
+          className="grid md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {benefits.map((benefit) => (
+            <motion.div
               key={benefit.title}
-              className="group p-8 rounded-2xl bg-card border border-border hover:border-xero-turquoise/50 hover-lift glass-card"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              variants={itemVariants}
+              className="group p-8 rounded-2xl bg-card border border-border hover:border-xero-turquoise/50 hover-lift glass-card text-center"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-xero-turquoise/20 to-xero-navy/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <benefit.icon className="w-7 h-7 text-xero-turquoise" />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-xero-turquoise/20 to-xero-navy/10 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                <benefit.icon className="w-8 h-8 text-xero-turquoise" />
               </div>
               <h3 className="text-xl font-display font-semibold text-foreground mb-3 group-hover:text-xero-turquoise transition-colors">
                 {benefit.title}
@@ -74,9 +91,9 @@ const BenefitsSection = () => {
               <p className="text-muted-foreground leading-relaxed">
                 {benefit.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
