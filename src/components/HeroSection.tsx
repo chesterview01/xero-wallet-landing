@@ -128,7 +128,7 @@ const HeroSection = () => {
         }} transition={{
           duration: 0.6,
           delay: 0.4
-        }}>Compra y vende USDX con bolívares a (BCV) de forma rápida, segura y transparente. Protege tu dinero de la inflación 1 usdx = 1$ BCV               con Xero Wallet.</motion.p>
+        }}>Compra y vende Dolares a (BCV) de forma rápida, segura y transparente. Protege tu dinero de la inflación 1 usdx = 1$ BCV con Xero Wallet.</motion.p>
 
           {/* CTA Buttons */}
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" initial={{
